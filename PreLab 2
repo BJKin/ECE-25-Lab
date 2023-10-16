@@ -1,0 +1,23 @@
+//Logic Gate Schematic Code
+module HalfBit (input A,input B,output Y,output Z);
+wire W1, W2, W3;
+nand nand1 (W1, A, B);
+nand nand2 (W2, W1, A);
+nand nand3 (W3, W1, B);
+nand nand4 (Y, W1, W1);
+nand nand5 (Z, W2, W3);
+endmodule
+//Simulation Code
+`timescale 1ns / 1ps
+module simulation ();
+reg A, B;
+wire Y, Z;
+HalfBit HalfBit1 (A,B,Y,Z);
+initial
+begin
+A=0;B=0;
+#10 A=0; B=1;
+#10 A=1; B=0;
+#10 A=1; B=1;
+end
+endmodule
